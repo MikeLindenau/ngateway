@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ngateway
+  namespace: ncloud-system
+  labels:
+    component: ngateway
+    sys: project
+    project: { { projectId } }
+    provider: nscale
+spec:
+  type: NodePort
+  selector:
+    component: ngateway
+    sys: project
+    project: { { projectId } }
+    provider: nscale
+  ports:
+    - name: http-filter
+      protocol: TCP
+      port: 5000
+      targetPort: http-filter

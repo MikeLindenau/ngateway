@@ -1,0 +1,29 @@
+{
+  "name": "ngateway",
+  "version": "0.1.0",
+  "description": "Mesh enabled gateway for nscale cloud namespaces",
+  "main": "ngateway.js",
+  "scripts": {
+    "start": "node ngateway.js",
+    "test": "tap"
+  },
+  "dependencies": {
+    "@kubernetes/client-node": "^0.10.2",
+    "dotenv": "^8.0.0",
+    "fastify": "^2.6.0",
+    "get-ip-address": "^1.0.0",
+    "ip": "^1.1.5",
+    "pino": "^5.12.6",
+    "seneca": "^3.11.0",
+    "seneca-balance-client": "^0.7.0",
+    "seneca-mesh": "^1.0.0",
+    "pino-pretty": "^3.2.0",
+    "sneeze": "^1.0.0"
+  },
+  "devDependencies": {
+    "@hapi/wreck": "^15.0.1",
+    "tap": "^14.2.2"
+  },
+  "author": "37teams",
+  "license": "ISC"
+}
