@@ -8,16 +8,20 @@
     "test": "tap"
   },
   "dependencies": {
+    "@hapi/boom": "^7.4.2",
     "@kubernetes/client-node": "^0.10.2",
     "dotenv": "^8.0.0",
     "fastify": "^2.6.0",
+    "find-my-way": "^2.1.0",
     "get-ip-address": "^1.0.0",
     "ip": "^1.1.5",
+    "lodash": "^4.17.11",
     "pino": "^5.12.6",
+    "pino-pretty": "^3.2.0",
     "seneca": "^3.11.0",
     "seneca-balance-client": "^0.7.0",
     "seneca-mesh": "^1.0.0",
-    "pino-pretty": "^3.2.0",
+    "seneca-promisify": "^0.8.0",
     "sneeze": "^1.0.0"
   },
   "devDependencies": {

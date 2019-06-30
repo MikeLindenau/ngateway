@@ -1,55 +1,50 @@
 const t = require('tap')
 const Sneeze = require('sneeze')
 const { createMesh } = require('../lib/mesh')
+const { createLogger } = require('../lib/log')
 
 const test = t.test
+const log = createLogger()
 
-test('listens to add and leave events for gateways', t => {
+test('Connect to mesh network', t => {
   t.plan(5)
 
+  // Setup base
   const base = createBase()
+  const bases = ['0.0.0.0:39999']
   base.join({ name: 'base' })
 
-  const gatewayB = createMesh({
-    isBase: false,
-    bases: ['0.0.0.0:39999']
-  })
+  // Add member
+  const m2 = createMesh({ bases, log })
 
-  gatewayB.on('add', function(member) {
+  m2.on('add', function(member) {
     t.pass()
   })
 
-  gatewayB.on('ready', function() {
-    gatewayB.leave()
+  m2.on('ready', function() {
+    m2.leave()
   })
 
-  const gatewayA = createMesh({
-    isBase: false,
-    bases: ['0.0.0.0:39999']
-  })
+  const m1 = createMesh({ bases, log })
 
-  gatewayA.on('add', function(member) {
+  m1.on('add', function(member) {
     t.pass()
   })
 
-  gatewayA.on('remove', function(member) {
+  m1.on('remove', function(member) {
     t.pass()
 
-    gatewayA.leave()
+    m1.leave()
     base.leave()
   })
 
-  gatewayA.on('ready', function() {
-    gatewayB.join({ name: 'B' })
+  m1.on('ready', function() {
+    m2.join({ name: 'B' })
   })
 
-  gatewayA.join({ name: 'A' })
+  m1.join({ name: 'A' })
 })
 
 function createBase() {
   return Sneeze({ isbase: true, tag: null, host: '0.0.0.0' })
-}
-
-function createNode() {
-  return Sneeze({ isbase: false, host: '0.0.0.0' })
 }
