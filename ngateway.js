@@ -5,6 +5,7 @@ const findIp = require('get-ip-address')
 
 const { findBases } = require('./lib/find-bases')
 const { fetchProjectConfig } = require('./lib/project')
+const { createController } = require('./lib/controller')
 const { createServer } = require('./lib/server')
 const { createHttpFilter } = require('./lib/http-filter')
 const { createMesh } = require('./lib/mesh')
@@ -30,8 +31,9 @@ async function boot() {
   const mesh = createMesh(meshOpts)
   const transport = createTransport(meshOpts)
 
-  const server = Server({ trustProxy: true })
+  const server = createServer()
   const httpFilter = createHttpFilter(server, { transport })
+  const controller = createController(httpFilter)
 
   mesh.join({
     kind: 'gateway',
@@ -41,8 +43,7 @@ async function boot() {
     domains: project.domains
   })
 
-  mesh.on('add', httpFilter.add)
-  mesh.on('remove', httpFilter.remove)
+  mesh.on('add', controller.addService)
 
   await server.listen(NGATEWAY_SERVICE_PORT).catch(err => {
     log.error(err, 'gateway_failed')
@@ -51,18 +52,5 @@ async function boot() {
 
   log.info(`Gateway for project ${project.id} listening`)
 }
-
-/**
- * Limitations
- * ---------
- * - Can only add routes
- * - leverages seneca as transport
- *
- *
- * Open Questions
- * ---------
- * - How to handle multiple instances registering the same route.
- *
- */
 
 boot()
