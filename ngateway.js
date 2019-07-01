@@ -6,6 +6,7 @@ const findIp = require('get-ip-address')
 const { findBases } = require('./lib/find-bases')
 const { fetchProjectConfig } = require('./lib/project')
 const { createController } = require('./lib/controller')
+const { createTransport } = require('./lib/transport')
 const { createServer } = require('./lib/server')
 const { createHttpFilter } = require('./lib/http-filter')
 const { createMesh } = require('./lib/mesh')
@@ -29,7 +30,7 @@ async function boot() {
 
   const meshOpts = { tag: project.id, bases, host, log }
   const mesh = createMesh(meshOpts)
-  const transport = createTransport(meshOpts)
+  const transport = await createTransport(meshOpts)
 
   const server = createServer()
   const httpFilter = createHttpFilter(server, { transport })
@@ -53,4 +54,8 @@ async function boot() {
   log.info(`Gateway for project ${project.id} listening`)
 }
 
-boot()
+if (require.main === module) {
+  boot()
+} else {
+  module.exports = boot
+}

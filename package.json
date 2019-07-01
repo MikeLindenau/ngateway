@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@hapi/wreck": "^15.0.1",
+    "proxyquire": "^2.1.0",
     "tap": "^14.2.2"
   },
   "author": "37teams",
