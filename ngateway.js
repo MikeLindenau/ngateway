@@ -33,7 +33,7 @@ async function boot() {
   const transport = await createTransport(meshOpts)
 
   const server = createServer()
-  const httpFilter = createHttpFilter(server, { transport })
+  const httpFilter = createHttpFilter(server, { transport, log })
   const controller = createController(httpFilter)
 
   mesh.join({
