@@ -14,7 +14,8 @@ const { createLogger } = require('./lib/log')
 
 const {
   NGATEWAY_SERVICE_HOST = 'localhost',
-  NGATEWAY_SERVICE_PORT = 5100
+  NGATEWAY_SERVICE_PORT = 5100,
+  CONTAINER_PORT = 5000
 } = process.env
 
 async function boot() {
@@ -44,7 +45,7 @@ async function boot() {
 
   mesh.on('add', controller.addService)
 
-  await server.listen(NGATEWAY_SERVICE_PORT).catch(err => {
+  await server.listen(CONTAINER_PORT).catch(err => {
     log.error(err, 'gateway_failed')
     process.exit(1)
   })
