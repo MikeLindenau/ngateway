@@ -45,7 +45,7 @@ async function boot() {
 
   mesh.on('add', controller.addService)
 
-  await server.listen(CONTAINER_PORT).catch(err => {
+  await server.listen(CONTAINER_PORT, '0.0.0.0').catch(err => {
     log.error(err, 'gateway_failed')
     process.exit(1)
   })
