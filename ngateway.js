@@ -3,7 +3,7 @@ const Server = require('fastify')
 const Mesh = require('seneca-mesh')
 const findIp = require('get-ip-address')
 
-const { findBases } = require('./lib/find-bases')
+const { dnsLookup } = require('./lib/dnsLookup')
 const { fetchProjectConfig } = require('./lib/project')
 const { createController } = require('./lib/controller')
 const { createTransport } = require('./lib/transport')
@@ -13,15 +13,13 @@ const { createMesh } = require('./lib/mesh')
 const { createLogger } = require('./lib/log')
 
 const {
-  CLOUD_PROVIDER,
-  BASE_MESH_NAMESPACE = 'mesh',
   NGATEWAY_SERVICE_HOST = 'localhost',
   NGATEWAY_SERVICE_PORT = 5100
 } = process.env
 
 async function boot() {
-  const bases = await findBases(BASE_MESH_NAMESPACE)
-  const host = CLOUD_PROVIDER ? findIp() : 'localhost'
+  const bases = dnsLookup('core-base.seneca-mesh.svc.cluster.local')
+  const host = findIp()
   const log = createLogger()
   const project = await fetchProjectConfig()
 

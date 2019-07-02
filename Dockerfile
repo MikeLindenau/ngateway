@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:10.16.0
 
 # Create app directory
 WORKDIR /usr/src/srv
