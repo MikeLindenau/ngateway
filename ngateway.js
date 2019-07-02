@@ -18,7 +18,7 @@ const {
 } = process.env
 
 async function boot() {
-  const bases = dnsLookup('core-base.seneca-mesh.svc.cluster.local')
+  const bases = await dnsLookup('core-base.seneca-mesh.svc.cluster.local')
   const host = findIp()
   const log = createLogger()
   const project = await fetchProjectConfig()
