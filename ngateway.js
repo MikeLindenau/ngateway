@@ -15,11 +15,12 @@ const { createLogger } = require('./lib/log')
 const {
   NGATEWAY_SERVICE_HOST = 'localhost',
   NGATEWAY_SERVICE_PORT = 5100,
-  CONTAINER_PORT = 5000
+  CONTAINER_PORT = 5000,
+  BASE_SERVICE_DNS = 'core-base.seneca-mesh.svc.cluster.local'
 } = process.env
 
 async function boot() {
-  const bases = await dnsLookup('core-base.seneca-mesh.svc.cluster.local')
+  const bases = await dnsLookup(BASE_SERVICE_DNS)
   const host = findIp()
   const log = createLogger()
   const project = await fetchProjectConfig()

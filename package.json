@@ -1,6 +1,6 @@
 {
   "name": "ngateway",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Mesh enabled gateway for nscale cloud namespaces",
   "main": "ngateway.js",
   "scripts": {
