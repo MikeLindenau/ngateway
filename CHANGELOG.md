@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/37teams/ngateway/compare/v1.2.0...v1.2.1) (2019-07-11)
+
+
+### Bug Fixes
+
+* Update transport to have tag in meshOpts for transport ([f12b974](https://github.com/37teams/ngateway/commit/f12b974))
+
+
+
 ## [1.2.0](https://github.com/37teams/ngateway/compare/v1.0.0...v1.2.0) (2019-07-05)
 
 
