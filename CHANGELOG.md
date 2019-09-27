@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/37teams/ngateway/compare/v1.3.0...v1.3.1) (2019-09-27)
+
+
+### Bug Fixes
+
+* move to meta ([47dd507](https://github.com/37teams/ngateway/commit/47dd507))
+
 ## [1.3.0](https://github.com/37teams/ngateway/compare/v1.2.6...v1.3.0) (2019-09-27)
 
 
