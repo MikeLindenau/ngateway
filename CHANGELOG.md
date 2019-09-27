@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/37teams/ngateway/compare/v1.2.6...v1.3.0) (2019-09-27)
+
+
+### Features
+
+* grouped params and query to allow down stream to know what came in as what ([3bebf69](https://github.com/37teams/ngateway/commit/3bebf69))
+
 ### [1.2.6](https://github.com/37teams/ngateway/compare/v1.2.5...v1.2.6) (2019-09-26)
 
 
